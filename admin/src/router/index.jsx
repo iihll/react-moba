@@ -1,6 +1,6 @@
 import React from 'react'
-import Home from '@/pages/home'
-import About from '../pages/about'
+import Home from '@/pages/Home'
+import About from '@/pages/About'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 function router() {

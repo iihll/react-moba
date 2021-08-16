@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import './App.css'
-import Router from './router'
+import Router from '@/router'
+import { Button } from 'antd'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -8,9 +8,9 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <button type="button" onClick={() => setCount(count => count + 1)}>
+        <Button type="primary" onClick={() => setCount(count => count + 1)}>
           count is: {count}
-        </button>
+        </Button>
         <Router />
       </header>
     </div>
