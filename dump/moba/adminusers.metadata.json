@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"moba.adminusers"}],"uuid":"1c2bea2587de454b9a32b3c000b34f5e"}

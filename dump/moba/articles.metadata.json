@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"moba.articles"}],"uuid":"08f183d0e56c43acbb31b45b3aa50e29"}
