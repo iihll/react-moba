@@ -3,8 +3,17 @@ import { Card, Form, Input, Button, Space } from 'antd'
 import './index.less'
 
 export default class Login extends Component {
-  onFinish = values => {
-    console.log('Success:', values)
+  onFinish = async values => {
+    const res = await fetch('/api/admin/login', {
+      method: 'post',
+      body: JSON.stringify({ ...values }),
+      headers: {
+        'content-type': 'application/json; charset=utf-8'
+      }
+    })
+    console.log('res', res)
+    const data = await res.json()
+    console.log('data', data)
   }
 
   render() {
@@ -22,7 +31,7 @@ export default class Login extends Component {
               <Button type="primary" htmlType="submit">
                 登录
               </Button>
-              <Button>重置</Button>
+              <Button htmlType="reset">重置</Button>
             </Space>
           </Form.Item>
         </Form>
