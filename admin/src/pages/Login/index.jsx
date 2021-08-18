@@ -1,19 +1,16 @@
 import React, { Component } from 'react'
-import { Card, Form, Input, Button, Space } from 'antd'
+import { Card, Form, Input, Button, Space, message } from 'antd'
 import './index.less'
+import request from '@/utils/request'
 
 export default class Login extends Component {
   onFinish = async values => {
-    const res = await fetch('/api/admin/login', {
-      method: 'post',
-      body: JSON.stringify({ ...values }),
-      headers: {
-        'content-type': 'application/json; charset=utf-8'
-      }
-    })
-    console.log('res', res)
-    const data = await res.json()
-    console.log('data', data)
+    const res = await request.post('/login', values)
+    if (res) {
+      sessionStorage.token = res.token
+      message.success('登录成功')
+      this.props.history.push('/')
+    }
   }
 
   render() {
