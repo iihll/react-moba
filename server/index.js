@@ -3,7 +3,7 @@ const express = require('express')
 const app = express()
 
 // 全局秘钥
-// app.set('secret', 'iihll')
+app.set('secret', 'pwd')
 
 // 设置跨域
 // app.use(require('cors')())
@@ -16,7 +16,7 @@ app.use(express.json())
 // app.use('/', express.static(__dirname + '/web'))
 
 // 引入数据库连接
-// require('./plugins/db')(app)
+require('./plugins/db')(app)
 
 // 引入 admin 路由
 require('./routes/admin')(app)

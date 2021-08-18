@@ -1,9 +1,9 @@
 // const express = require('express')
 // const router = express.Router({ mergeParams: true })
 // const multer = require('multer')
-// const AdminUser = require('../../models/AdminUser')
-// const assert = require('http-assert')
-// const jwt = require('jsonwebtoken')
+const AdminUser = require('../../models/AdminUser')
+const assert = require('http-assert')
+const jwt = require('jsonwebtoken')
 
 module.exports = app => {
   // router.post('/', async (req, res) => {
@@ -65,19 +65,18 @@ module.exports = app => {
   // 登录接口
   app.post('/api/admin/login', async (req, res) => {
     const { username, password } = req.body
-    console.log(req.body)
     // 1.根据用户名找用户
     // +password 强制取出
-    // const user = await AdminUser.findOne({ username }).select('+password')
-    // assert(user, 422, '用户不存在')
+    // const r = await AdminUser.create(req.body)
+    const user = await AdminUser.findOne({ username }).select('+password')
+    assert(user, 422, '用户不存在', res)
     // 2.校验密码
     // compare 比较明文和密文
-    // const isValid = require('bcrypt').compareSync(password, user.password)
-    // assert(isValid, 422, '密码错误')
+    const isValid = require('bcryptjs').compareSync(password, user.password)
+    assert(isValid, 422, '密码错误', res)
     // 3.返回token
-    // const token = jwt.sign({ id: user._id }, app.get('secret'))
-    // res.send({ token })
-    res.send({ username, password, test: true })
+    const token = jwt.sign({ id: user._id }, app.get('secret'))
+    res.send({ token })
   })
 
   // 错误处理函数
