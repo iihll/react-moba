@@ -1,16 +1,17 @@
-import React from 'react'
-import Home from '@/pages/Home'
-import About from '@/pages/About'
-import Login from '@/pages/Login'
+import React, { lazy, Suspense } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 function router() {
   return (
-    <Router>
-      <Route path="/" exact component={Home} />
-      <Route path="/about" component={About} />
-      <Route path="/login" component={Login} />
-    </Router>
+    <Suspense fallback={React.Fragment}>
+      <Router>
+        <Route path="/" exact component={lazy(() => import('@/pages/Home'))}>
+          {/* <Route path="/welcome" component={Welcome} /> */}
+        </Route>
+        <Route path="/about" component={lazy(() => import('@/pages/About'))} />
+        <Route path="/login" component={lazy(() => import('@/pages/Login'))} />
+      </Router>
+    </Suspense>
   )
 }
 
